@@ -23,13 +23,14 @@
 /client/.env.development.local
 /client/.env.test.local
 /client/.env.production.local
+/client/.env
 
 /server/.DS_Store
 /server/.env.local
 /server/.env.development.local
 /server/.env.test.local
 /server/.env.production.local
-
+/server/.env
 
 /server/npm-debug.log*
 /server/yarn-debug.log*
