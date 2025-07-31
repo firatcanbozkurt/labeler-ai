@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  opcua-server:
+    build: .
+    ports:
+      - "4840:4840"
+    volumes:
+      - ./sample_data.csv:/app/data.csv
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    restart: unless-stopped
