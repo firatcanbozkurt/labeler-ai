@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  opcua-server:
+    build: .
+    ports:
+      - "4840:4840"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - CSV_FILE_PATH=/app/data/data.csv
+    restart: unless-stopped
+    networks:
+      - opcua-network
+
+  data-generator:
+    build: .
+    command: dotnet GenerateSampleData.dll /app/data/data.csv
+    volumes:
+      - ./data:/app/data
+    environment:
+      - CSV_FILE_PATH=/app/data/data.csv
+    restart: unless-stopped
+    networks:
+      - opcua-network
+    depends_on:
+      - opcua-server
+
+networks:
+  opcua-network:
+    driver: bridge
+
+volumes:
+  data:
